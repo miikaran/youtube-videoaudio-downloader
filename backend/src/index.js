@@ -26,14 +26,22 @@ async function startAll() {
 
 startAll().catch(console.error)
 
-app.post("/ladatut_videot/", function(req, res){
-    userSearch.addData(req.body, function(err, data){     
-        res.send(data)
-              
+app.post("/ladatut_tiedostot/", function(req, res){
+
+    userSearch.addData(req.body, function(err, data){            
+        res.send(data) 
+        console.log(data)            
     });
-    userSearch.downloadVideo(req.body, function(err, data){     
+
+    userSearch.searchVideo(req.body, function(err, data){  
         res.send(data)
-              
+    });
+
+})
+
+app.get("/videoInfo/", function(req, res){
+    userSearch.getData(function(data){  
+        res.send({"statuscode":1, "result":data})
     });
 })
 

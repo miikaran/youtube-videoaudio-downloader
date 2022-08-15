@@ -5,12 +5,20 @@ import { useState } from 'react'
 export default function FrontPage(){
 
     const [userSearch, setuserSearch] = useState('')
-    const [videoName, setvideoName] = useState('')
     const [videoThumbnail, setvideoThumbnail] = useState('')
     const [search, setSearch] = useState('')
     const [errors, setErrors] = useState('')
     const port = 4000
-    const url = `http://localhost:${port}/ladatut_videot/`
+    const url = `http://localhost:${port}/ladatut_tiedostot/`
+
+
+    const fetchData = async() => {
+
+        const response = await fetch('http://localhost:4000/videoInfo/')
+        const data = await response.json()
+        console.log(data)
+    }
+
 
 
     const sendDataToAPI = async () => {
@@ -35,8 +43,9 @@ export default function FrontPage(){
         catch(err){
             console.log(err)
         }
-        
     }
+
+
 
 
 
@@ -67,6 +76,15 @@ export default function FrontPage(){
                                 >
                                 <span class="text-sm font-medium"> SEARCH </span>
                             </button>
+
+                            <button
+                            
+                            onClick={fetchData}
+                            type="submit"
+                            class="flex items-center justify-center w-full px-5 py-3 mt-4 text-white transition rounded-md bg-rose-600 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
+                            >
+                            <span class="text-sm font-medium"> FETCH </span>
+                        </button>
                         
                         </form>
                     </div>
