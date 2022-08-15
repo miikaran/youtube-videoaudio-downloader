@@ -4,7 +4,7 @@ const setupBodyparser = require('./setup/bodyparser')
 const setupRouting = require('./setup/routing')
 const port = 4000
 const app = express();
-const addFirebaseData = require('./handlers/videoSearchYTDL')
+const userSearch = require('./handlers/userSearch')
 
 setupBodyparser(app)
 
@@ -27,7 +27,11 @@ async function startAll() {
 startAll().catch(console.error)
 
 app.post("/ladatut_videot/", function(req, res){
-    addFirebaseData.addData(req.body, function(err, data){     
+    userSearch.addData(req.body, function(err, data){     
+        res.send(data)
+              
+    });
+    userSearch.downloadVideo(req.body, function(err, data){     
         res.send(data)
               
     });
