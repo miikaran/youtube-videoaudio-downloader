@@ -10,8 +10,7 @@ module.exports = {
         let search = req.search
 
         firebase.database().ref("noob/" + search).set({
-            name: req.name,
-            email: req.email
+            userSearch: req.userSearch
         });
         callback(null, {"vastaus":200, "viesti: ":"lähetetty firebaseen"})
 

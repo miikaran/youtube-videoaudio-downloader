@@ -10,14 +10,14 @@ setupBodyparser(app)
 
 async function startAll() {
 
-    app.listen(4000, function(err, data){
+    app.listen(port, function(err, data){
 
         if(err){
             console.log(err)
         }
 
         else{
-            console.log('Server päällä portissa 4000')
+            console.log(`Server päällä portissa ${port}`)
         }
     
     })
@@ -27,9 +27,9 @@ async function startAll() {
 startAll().catch(console.error)
 
 app.post("/ladatut_videot/", function(req, res){
-    addFirebaseData.addData(req.body, function(err, data){
+    addFirebaseData.addData(req.body, function(err, data){     
         res.send(data)
-        
+              
     });
 })
 
