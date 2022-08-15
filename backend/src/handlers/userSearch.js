@@ -2,7 +2,6 @@ const firebase = require('../setup/firebase')
 const express = require('express')
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-const { info } = require('console');
 const app = express()
 
 module.exports = {
@@ -13,8 +12,8 @@ module.exports = {
         let basicInfo = await ytdl.getBasicInfo(videoID)
         let name = basicInfo.videoDetails.title
 
-        ytdl(`${videoID}`)
-        .pipe(fs.createWriteStream(`${name}.mp4`));
+        /*ytdl(`${videoID}`)
+        .pipe(fs.createWriteStream(`${name}.mp4`));*/
     },
     
 
