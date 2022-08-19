@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
-import FrontPage from './pages/FrontPage'
+import Search from './components/Search'
+import LandingPage from './pages/LandingPage'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<FrontPage />} exact={true} />
+          <Route path="/" element={<LandingPage />} exact={true} />
+          <Route path="/Search" element={<Search />} exact={true} />
         </Routes>
       </BrowserRouter>   
   </React.StrictMode>
