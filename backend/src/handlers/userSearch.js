@@ -23,6 +23,8 @@ module.exports = {
 
         firebase.database().ref("testi/" + search).set({
             userSearch: req.userSearch,
+            videoURL: req.videoURL,
+            videoFormat: req.videoFormat,
             info: (await ytdl.getBasicInfo(req.userSearch)).videoDetails.title,
         });
         callback(null, {"success":200, "msg: ":"sent to firebase"})

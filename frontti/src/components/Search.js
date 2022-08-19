@@ -6,9 +6,12 @@ export default function Search(){
 
     const [userSearch, setuserSearch] = useState('')
     const [videoThumbnail, setvideoThumbnail] = useState([])
+    const [videoURL, setvideoURL] = useState('');
+    const [videoFormat, setvideoFormat] = useState('');
     const [hasSearched, sethasSearched] = useState(false)
     const [search, setSearch] = useState('')
     const [errors, setErrors] = useState('')
+
     let resultAmount = 10;
     const port = 4000
     const youtubeAPIKey = ""
@@ -35,27 +38,29 @@ export default function Search(){
 
 
     
-    const loadMore = async () => {
+    /*const loadMore = async () => {
 
         resultAmount += 10;
         await fetchYoutubeData();
         console.log("moinfeniinfe")
         
-    }
+    }*/
 
+    
 
-
-    /*const fetchServerData = async() => {
+    const fetchServerData = async() => {
 
         const response = await fetch(url)
         const data = await response.json()
         console.log(data.result.info)
         setvideoThumbnail(data.result.info)
-    }*/
+    }
 
 
-    const sendDataToAPI = async () => {
+    const sendDataToServer = async () => {
        
+        setvideoURL("https://www.youtube.com/watch?v=AcpcEdL1Ho0")
+        setvideoFormat("mp3")
         setSearch("helou")
         console.log(userSearch)
     
@@ -70,6 +75,8 @@ export default function Search(){
                 body: JSON.stringify({
                     search,
                     userSearch,
+                    videoURL,
+                    videoFormat,
                 })  
             })
         }      
@@ -77,7 +84,7 @@ export default function Search(){
             console.log(err)
         }
 
-        /*fetchData();*/
+        fetchServerData();
     }
 
 
@@ -100,7 +107,7 @@ export default function Search(){
                                         class="w-full p-3 text-gray-900 transition border-2 bg-white rounded-sm shadow-sm focus:ring focus:outline-none focus:ring-yellow-400 focus:border-white"
                                     /> 
 
-                                    <select name="type" id="type" class="py-2 px-8 font-bold border-2">
+                                    <select name="type" id="type" class="py-2 px-8 font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
                                         <option value="mp3">MP3</option>
                                         <option value="mp4">MP4</option>
                                     </select>  
@@ -110,9 +117,9 @@ export default function Search(){
                             </div>
 
                             <div class="sm:flex gap-4 mt-5 mr-5">
-                                <button
-                                
-                                    onClick={sendDataToAPI}
+
+                                <button                             
+                                    onClick={sendDataToServer}
                                     type="submit"
                                     class="flex items-center justify-center w-full px-12 py-3 mt-4 text-white transition bg-pink-600 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
                                     >
@@ -126,6 +133,7 @@ export default function Search(){
                                 >
                                 <span class="text-sm font-medium"> FETCH </span>
                                 </button>
+
                             </div>
                         </form>
                     </div>
@@ -135,7 +143,7 @@ export default function Search(){
                      <div class="grid grid-cols-1 gap-3 mt-52 md:grid-cols-2 lg:grid-cols-3">
 
                         {videoThumbnail.map(info => {
-                            
+
                             return (
 
                                 <a class="relative block p-8 overflow-hidden bg-gray-200 border border-gray-100" href={'https://www.youtube.com/watch?v=' + info.id.videoId}>
@@ -164,7 +172,7 @@ export default function Search(){
                         })}
 
                     <div class="mt-10">
-                        <button onClick={loadMore} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             LOAD MORE...
                         </button>
                     </div>
