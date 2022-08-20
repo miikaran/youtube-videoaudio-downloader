@@ -5,62 +5,22 @@ import { useState } from 'react'
 export default function Search(){
 
     const [userSearch, setuserSearch] = useState('')
-    const [videoThumbnail, setvideoThumbnail] = useState([])
+    const [videoData, setvideoData] = useState([])
     const [videoURL, setvideoURL] = useState('');
     const [videoFormat, setvideoFormat] = useState('');
     const [hasSearched, sethasSearched] = useState(false)
-    const [search, setSearch] = useState('')
-    const [errors, setErrors] = useState('')
-
-    let resultAmount = 10;
+    const [search, setSearch] = useState('') 
     const port = 4000
-    const youtubeAPIKey = ""
-
-    //SERVERSIDE API ENDPOINT
-    const url = `http://localhost:${port}/VIDEOS/`
-
-    //YOUTUBE DATA API
-    const youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${youtubeAPIKey}&type=video&part=snippet&maxResults=${resultAmount}&q=${userSearch}`
+    const url = `http://localhost:${port}/VIDEOS/` // SERVERSIDE API ENDPOINT //
+    let resultAmount = 10; 
 
 
 
-
-    const fetchYoutubeData = async () => {
-
-        const response = await fetch(youtubeURL)
-        const data = await response.json()
-        console.log(data)
-
-        sethasSearched(true)
-        setvideoThumbnail(data.items)
-    }
-
-
-
-    
-    /*const loadMore = async () => {
-
-        resultAmount += 10;
-        await fetchYoutubeData();
-        console.log("moinfeniinfe")
-        
-    }*/
-
-    
-
-    const fetchServerData = async() => {
-
-        const response = await fetch(url)
-        const data = await response.json()
-        console.log(data.result.info)
-        setvideoThumbnail(data.result.info)
-    }
-
-
+    // SEND NECESSARY DATA TO SERVER //
     const sendDataToServer = async () => {
        
         setvideoURL("https://www.youtube.com/watch?v=AcpcEdL1Ho0")
-        setvideoFormat("mp3")
+        setvideoFormat("mp4")
         setSearch("helou")
         console.log(userSearch)
     
@@ -77,15 +37,38 @@ export default function Search(){
                     userSearch,
                     videoURL,
                     videoFormat,
+                    resultAmount,
                 })  
             })
         }      
+
         catch(err){
             console.log(err)
         }
-
+        
         fetchServerData();
     }
+
+
+
+    // FETCH DATA FROM SERVER //
+    const fetchServerData = async() => {
+
+        const response = await fetch(url)
+        const data = await response.json()     
+        console.log(data)
+        setvideoData(data.result.YOUTUBE_SEARCH.items)
+        sethasSearched(true)
+
+    }
+
+
+    // LOAD MORE RESULTS //
+    const loadMore = async () => {
+        resultAmount += 10
+        await sendDataToServer();
+    }
+
 
 
     return(
@@ -93,7 +76,7 @@ export default function Search(){
         <div>
             <div class="py-5 rounded">
                 <div class="">
-                        <div class="max-w-xl">
+                        <div class="max-w-4xl">
                             <form action="#" class="sm:gap-4">
                     
                             <div class="sm:flex-1">
@@ -112,56 +95,54 @@ export default function Search(){
                                         <option value="mp4">MP4</option>
                                     </select>  
 
+                                    <button                             
+                                        onClick={sendDataToServer}
+                                        type="submit"
+                                        class="flex items-center justify-center w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
+                                        >
+                                        <span class="text-sm font-medium"> SEARCH </span>
+                                    </button>
+
+                                    <button
+                                        onClick={fetchServerData}
+                                        type="submit"
+                                        class="flex items-center justify-center w-full px-12 py-3 mx-2 mt-4 text-white transition bg-pink-600  sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
+                                        >
+                                        <span class="text-sm font-medium"> FETCH </span>
+                                    </button>
+
                                 </div>
                                                      
-                            </div>
-
-                            <div class="sm:flex gap-4 mt-5 mr-5">
-
-                                <button                             
-                                    onClick={sendDataToServer}
-                                    type="submit"
-                                    class="flex items-center justify-center w-full px-12 py-3 mt-4 text-white transition bg-pink-600 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
-                                    >
-                                    <span class="text-sm font-medium"> SEARCH </span>
-                                </button>
-
-                                <button
-                                onClick={fetchYoutubeData}
-                                type="submit"
-                                class="flex items-center justify-center w-full px-12 py-3 mt-4 text-white transition bg-pink-600  sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
-                                >
-                                <span class="text-sm font-medium"> FETCH </span>
-                                </button>
-
                             </div>
                         </form>
                     </div>
                     
                     {hasSearched ? (
 
-                     <div class="grid grid-cols-1 gap-3 mt-52 md:grid-cols-2 lg:grid-cols-3">
+                     <div class="mt-20">
+                        <div class="text-white text-3xl text-center mr-10 font-bold py-5">Results with the word: <span class="text-4xl mx-1 text-sky-400"> {userSearch} </span></div>
 
-                        {videoThumbnail.map(info => {
+                        {videoData.map(info => {
+                            
 
                             return (
 
-                                <a class="relative block p-8 overflow-hidden bg-gray-200 border border-gray-100" href={'https://www.youtube.com/watch?v=' + info.id.videoId}>
-                                <span class="absolute inset-x-0 bottom-0 h-1  bg-gradient-to-r from-green-500 via-blue-700 to-purple-600"></span>
+                                <a class="relative block p-8 py-14 overflow-hidden bg-gray-100 mt-2 border border-gray-100" href={'https://www.youtube.com/watch?v=' + info.id.videoId}>
+                                <span class="absolute inset-x-0 bottom-0 h-3  bg-gradient-to-r from-green-500 via-blue-700 to-purple-600"></span>
 
                                 <div class="justify-between sm:flex">
 
                                     <div class="flex-shrink-0 hidden ml-5 sm:block">
-                                    <img class="object-cover w-72 h-32 shadow-lg" src={info.snippet.thumbnails.medium.url} alt="thumbnail"/>
+                                    <img class="object-cover w-96 h-52 bg-gray-900 p-1 shadow-xl" src={info.snippet.thumbnails.medium.url} alt="thumbnail"/>
                                     </div>
 
                                 </div>
 
                                 <div class="mt-5 mx-1">
-                                    <p class="mx-4 text-2xl font-bold">{info.snippet.channelTitle}</p>
+                                    <p class="mx-4 text-2xl font-bold py-2">{info.snippet.channelTitle}</p>
                                     <p class="mt-1 font-bold text-lg mx-4"><span class="font-medium text-md">{info.snippet.title}</span></p>
                                     <p class="text-xs mx-4 py-2">{info.snippet.description}</p>
-                                    <button class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4">DOWNLOAD</button>
+                                    <button class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
                                 </div>
 
                                 </a>
@@ -172,7 +153,7 @@ export default function Search(){
                         })}
 
                     <div class="mt-10">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={loadMore}>
                             LOAD MORE...
                         </button>
                     </div>

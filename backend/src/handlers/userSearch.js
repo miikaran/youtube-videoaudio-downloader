@@ -3,41 +3,56 @@ const express = require('express')
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 const app = express()
+const fetch = require("node-fetch");
+
+const youtubeAPIKey = ""
+
 
 module.exports = {
 
-    searchVideo: async function(req, callback){
-     
-        let videoID = req.userSearch
-        let basicInfo = await ytdl.getBasicInfo(videoID)
-        let name = basicInfo.videoDetails.title
 
-        /*ytdl(`${videoID}`)
-        .pipe(fs.createWriteStream(`${name}.mp4`));*/
-    },
-    
+    storeUserSearch: async function(req, callback){
 
-    addData: async function(req, callback){
+        let userSearch = req.userSearch
+        let objectName = "YOUTUBE_SEARCH"
+        const youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${youtubeAPIKey}&type=video&part=snippet&maxResults=${req.resultAmount}&q=${userSearch}`
+        
+        const response = await fetch(youtubeURL)
+        const data = await response.json()
 
-        let search = req.search
+        firebase.database().ref("testi/" + objectName).set({
 
-        firebase.database().ref("testi/" + search).set({
+            items: data.items,
             userSearch: req.userSearch,
             videoURL: req.videoURL,
             videoFormat: req.videoFormat,
-            info: (await ytdl.getBasicInfo(req.userSearch)).videoDetails.title,
         });
+
         callback(null, {"success":200, "msg: ":"sent to firebase"})
     },
 
-    getData: function(callback){
+
+
+    getUserData: function(callback){
 
         firebase.database().ref("testi/").once("value").then(function(snapshot){
             callback(snapshot.val());
         })
    
+    },
+
+
+    downloadContent: function(req){
+
+        //let basicInfo = await ytdl.getBasicInfo(videoID)
+        //let name = basicInfo.videoDetails.title
+        /*ytdl(`${videoID}`)
+        .pipe(fs.createWriteStream(`${name}.mp4`));*/
+
     }
+    
 }
+
 
 
 
