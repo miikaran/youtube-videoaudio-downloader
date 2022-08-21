@@ -24,22 +24,37 @@ module.exports = {
 
             items: data.items,
             userSearch: req.userSearch,
-            videoURL: req.videoURL,
-            videoFormat: req.videoFormat,
-        });
 
+        });     
         callback(null, {"success":200, "msg: ":"sent to firebase"})
     },
 
 
+    downloadContent: async function(req){
+  
+        // VALIDATE URL & DOWNLOAD THE CONTENT WITH YTDL-CORE //      
+        let videoURL = req.videoURL 
+        console.log(videoURL)
+        let basicInfo = await ytdl.getBasicInfo(videoURL)
+        let name = basicInfo.videoDetails.title
+
+        ytdl(videoURL)
+        .pipe(fs.createWriteStream(`${name}.mp4`));
+        console.log('lataus')   
+        
+
+    },
+
+    
 
     getUserData: function(callback){
 
         firebase.database().ref("testi/").once("value").then(function(snapshot){
+
             callback(snapshot.val());
         })
    
-    }
+    },
 }
 
 

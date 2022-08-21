@@ -23,7 +23,7 @@ export default function LandingPage(){
                     </div>
                     <DownloadAlert />
                     <div class="text-3xl text-gray-200 mt-8">
-                        Download youtube videos & audios easily from here!<br />
+                        Download youtube videos & audios fast & easily!<br />
                         <b>Select details, Enter video URL or name below & press search</b>
                     </div>
                     <Search />
@@ -36,7 +36,7 @@ export default function LandingPage(){
                     <p class="font-bold text-4xl py-5 text-gray-100">What's forbidden-mp3?</p>
                     Forbidden-mp3 is a tool which you can use to download videos & audios straight from youtube.
                     It uses <b>Node.js</b> package called <a class="underline" href="https://www.npmjs.com/package/ytdl-core"><b>YTDL-core</b></a> to download the content. It's also open source, so feel free to contribute
-                    at <a class="underline" href=""><b>Github</b></a> & fix some issues it has 😀
+                    at <a class="underline" href=""><b>Github</b></a> & fix some issues it has, or just inspect the code for fun! 😀
                     <br /><br />
                     You can give feedback here - <a class="underline text-blue-400" href="https://twitter.com/miikulitsu">Twitter</a>
                     <br /><br />
@@ -73,7 +73,7 @@ export default function LandingPage(){
                             </summary>
 
                             <p class="px-4 mt-4 leading-relaxed text-gray-200">
-                            no.
+                            No. When you download content from here, it does not include any kinds of viruses & includes only the file you wanted😀
                             </p>
                         </details>
 
@@ -136,7 +136,7 @@ export default function LandingPage(){
                             <p class="font-bold text-4xl py-5 mt-20 text-gray-100">How to contribute to this project?</p>
                             This project is saved at our public <a class="underline font-bold" href="">GitHub</a> repository.
                             You can fork it and start thinking solutions to issues i add every now and then. Every issues has information about the case & possible options 
-                            on how to fix it. Alternatively you can try to find them issues yourselves & let us know when you're done!😀
+                            on how to fix it. Alternatively you can try to find them issues yourselves & let me know!😀
                         </p>
                         <p class="mt-5 text-xl font-bold">How to fork & access the issues?</p>
                         <div class="mt-6">

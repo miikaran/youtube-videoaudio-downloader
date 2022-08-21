@@ -4,13 +4,15 @@ import { useState } from 'react'
 
 export default function Search(){
 
+
     const [userSearch, setuserSearch] = useState('')
-    const [videoData, setvideoData] = useState([])
-    const [videoURL, setvideoURL] = useState('');
+    const [videoData, setvideoData] = useState([]);
+    const [videoURL, setvideoURL] = useState(null);
     const [videoFormat, setvideoFormat] = useState('');
     const [videoQuality, setvideoQuality] = useState('');
-    const [hasSearched, sethasSearched] = useState(false)
-    const [search, setSearch] = useState('') 
+    const [hasSearched, sethasSearched] = useState(false);
+    const [loading, setloading]= useState(true);
+    const [search, setSearch] = useState('') ;
     
     const port = 4000
     const url = `http://localhost:${port}/VIDEOS/` // SERVERSIDE API ENDPOINT //
@@ -21,7 +23,6 @@ export default function Search(){
     // SEND NECESSARY DATA TO SERVER //
     const sendDataToServer = async () => {
        
-        setvideoURL("https://www.youtube.com/watch?v=AcpcEdL1Ho0")
         setvideoFormat("mp4")
         setSearch("helou")
         console.log(userSearch)
@@ -37,8 +38,6 @@ export default function Search(){
                 body: JSON.stringify({
                     search,
                     userSearch,
-                    videoURL,
-                    videoFormat,
                     resultAmount,
                 })  
             })
@@ -56,20 +55,55 @@ export default function Search(){
     // FETCH DATA FROM SERVER //
     const fetchServerData = async() => {
 
-        const response = await fetch(url)
-        const data = await response.json()     
-        console.log(data)
-        setvideoData(data.result.YOUTUBE_SEARCH.items)
-        sethasSearched(true)
+        try{
 
+            const response = await fetch(url)
+            const data = await response.json()     
+            console.log(data)
+            setvideoData(data.result.YOUTUBE_SEARCH.items)
+            sethasSearched(true)
+
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 
 
     // LOAD MORE RESULTS //
     const loadMore = async () => {
+
         resultAmount += 10
         await sendDataToServer();
     }
+
+
+    // SEND DOWNLOAD URL TO SERVER //
+    const downloadUrlToServer = async (info) => {
+
+        console.log(videoURL)
+
+    
+        try{
+
+            const response = await fetch(`${url}`, {
+
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({     
+                    videoURL,
+                })  
+            })
+
+        }      
+
+        catch(err){
+            console.log(err)
+        }
+    }
+
 
 
 
@@ -119,7 +153,8 @@ export default function Search(){
 
                             return (
 
-                                <a class="relative block p-8 py-14 overflow-hidden bg-gray-100 mt-2 border border-gray-100" href={'https://www.youtube.com/watch?v=' + info.id.videoId}>
+                                <a class="relative block p-8 py-14 overflow-hidden bg-gray-100 mt-2 border border-gray-100" /*href={'https://www.youtube.com/watch?v=' + info.id.videoId}*/>
+                                
                                 <span class="absolute inset-x-0 bottom-0 h-3  bg-gradient-to-r from-green-500 via-blue-700 to-purple-600"></span>
 
                                 <div class="justify-between sm:flex">
@@ -134,7 +169,7 @@ export default function Search(){
                                     <p class="mx-4 text-2xl font-bold py-2">{info.snippet.channelTitle}</p>
                                     <p class="mt-1 font-bold text-lg mx-4"><span class="font-medium text-md">{info.snippet.title}</span></p>
                                     <p class="text-xs mx-4 py-2">{info.snippet.description}</p>
-                                    <button class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
+                                    <button onClick={downloadUrlToServer} class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
                                 </div>
 
                                 </a>
