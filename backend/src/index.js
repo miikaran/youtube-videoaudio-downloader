@@ -33,6 +33,10 @@ app.post("/VIDEOS/", function(req, res){
     userSearch.storeUserSearch(req.body, function(err, data){            
         res.send(data)        
     });
+
+    userSearch.downloadContent(req.body, function(err, data){            
+        res.send(data)        
+    });
 })
 
 

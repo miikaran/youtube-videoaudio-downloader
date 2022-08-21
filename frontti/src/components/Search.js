@@ -73,10 +73,10 @@ export default function Search(){
 
     return(
 
-        <div>
+        <div class="mt-2">
             <div class="py-5 rounded">
                 <div class="">
-                        <div class="max-w-4xl">
+                        <div class="max-w-5xl">
                             <form action="#" class="sm:gap-4">
                     
                             <div class="sm:flex-1">
@@ -98,21 +98,11 @@ export default function Search(){
                                     <button                             
                                         onClick={sendDataToServer}
                                         type="submit"
-                                        class="flex items-center justify-center w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
+                                        class="w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
                                         >
-                                        <span class="text-sm font-medium"> SEARCH </span>
+                                        <span class="text-md font-bold"> SEARCH </span>
                                     </button>
-
-                                    <button
-                                        onClick={fetchServerData}
-                                        type="submit"
-                                        class="flex items-center justify-center w-full px-12 py-3 mx-2 mt-4 text-white transition bg-pink-600  sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
-                                        >
-                                        <span class="text-sm font-medium"> FETCH </span>
-                                    </button>
-
-                                </div>
-                                                     
+                                </div>                                                  
                             </div>
                         </form>
                     </div>

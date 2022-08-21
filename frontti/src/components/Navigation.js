@@ -17,7 +17,7 @@ export default function Navigation(){
                 <nav aria-labelledby="header-navigation">
                 <h2 class="sr-only" id="header-navigation">Header navigation</h2>
 
-                <ul class="flex items-center gap-20 text-lg">
+                <ul class="flex items-center gap-20 text-lg font-medium">
                     <li>
                     <a class="text-white transition  hover:text-white/75" href="/">
                         ABOUT
@@ -26,13 +26,13 @@ export default function Navigation(){
 
                     <li>
                     <a class="text-white transition hover:text-white/75" href="/">
-                        CONTRIBUTE HERE 
+                        SOURCE <b class="text-teal-300">//</b> CONTRIBUTE
                     </a>
                     </li>
 
                     <li>
-                    <a class="text-white transition shadow-white hover:text-white/75" href="/">
-                        CONTACT
+                    <a class="text-gray-200 font-bold transition border border-pink-500 px-10 py-2 hover:bg-gray-200 hover:text-gray-800 hover:border-gray-100" href="/">
+                        CONTACT                    
                     </a>
                     </li>
                 </ul>

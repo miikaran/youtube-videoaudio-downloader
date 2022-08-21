@@ -39,18 +39,7 @@ module.exports = {
             callback(snapshot.val());
         })
    
-    },
-
-
-    downloadContent: function(req){
-
-        //let basicInfo = await ytdl.getBasicInfo(videoID)
-        //let name = basicInfo.videoDetails.title
-        /*ytdl(`${videoID}`)
-        .pipe(fs.createWriteStream(`${name}.mp4`));*/
-
     }
-    
 }
 
 
