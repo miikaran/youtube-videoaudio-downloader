@@ -12,7 +12,6 @@ export default function Navigation(){
                     <img src={logo} width="100"></img>
                 </a>
             </div>
-
             <div class="hidden md:block">
                 <nav aria-labelledby="header-navigation">
                 <h2 class="sr-only" id="header-navigation">Header navigation</h2>
@@ -28,6 +27,8 @@ export default function Navigation(){
                     <a class="text-white transition hover:text-white/75" href="/">
                         SOURCE <b class="text-teal-300">//</b> CONTRIBUTE
                     </a>
+
+            
                     </li>
 
                     <li>

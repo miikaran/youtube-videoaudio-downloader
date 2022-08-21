@@ -11,13 +11,13 @@ export default function Alert(){
 
     return (
 
-        <div class="fixed inset-x-0 bottom-0 px-4 pb-3 flex justify-end" id="alert">
+        <div class="fixed inset-x-0 bottom-0 px-4 pb-3 flex justify-end">
 
         {show ? (
 
-            <div class="relative px-4 max-w-screen-md py-3 text-white bg-indigo-900 rounded-lg pr-14">
+            <div class="relative px-4 max-w-screen-md py-3 text-white bg-indigo-600 rounded-sm pr-14">
                 <p class="text-lg font-medium text-left sm:text-center">
-                😢 Download feature removed due to legal reasons! <br></br><a href=""><u class="italic hover:text-gray-300">Fork the project from here</u></a>
+                😢 Download feature removed due to copyright reasons! <br></br><a href=""><u class="italic hover:text-gray-300">Get the project from here</u></a>
                 </p>
 
                 <button

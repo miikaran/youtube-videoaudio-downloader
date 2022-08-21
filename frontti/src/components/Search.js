@@ -8,8 +8,10 @@ export default function Search(){
     const [videoData, setvideoData] = useState([])
     const [videoURL, setvideoURL] = useState('');
     const [videoFormat, setvideoFormat] = useState('');
+    const [videoQuality, setvideoQuality] = useState('');
     const [hasSearched, sethasSearched] = useState(false)
     const [search, setSearch] = useState('') 
+    
     const port = 4000
     const url = `http://localhost:${port}/VIDEOS/` // SERVERSIDE API ENDPOINT //
     let resultAmount = 10; 
@@ -93,7 +95,7 @@ export default function Search(){
                                     <select name="type" id="type" class="py-2 px-8 font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
                                         <option value="mp3">MP3</option>
                                         <option value="mp4">MP4</option>
-                                    </select>  
+                                    </select>
 
                                     <button                             
                                         onClick={sendDataToServer}
