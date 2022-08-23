@@ -7,7 +7,6 @@ export default function Search(){
 
     const [userSearch, setuserSearch] = useState('')
     const [videoData, setvideoData] = useState([]);
-    const [videoURL, setvideoURL] = useState(null);
     const [videoFormat, setvideoFormat] = useState('');
     const [videoQuality, setvideoQuality] = useState('');
     const [hasSearched, sethasSearched] = useState(false);
@@ -17,6 +16,8 @@ export default function Search(){
     const port = 4000
     const url = `http://localhost:${port}/VIDEOS/` // SERVERSIDE API ENDPOINT //
     let resultAmount = 10; 
+    let videoID = '';
+    let videoURL = '';
 
 
 
@@ -39,6 +40,7 @@ export default function Search(){
                     search,
                     userSearch,
                     resultAmount,
+                    videoFormat,
                 })  
             })
         }      
@@ -78,30 +80,32 @@ export default function Search(){
     }
 
 
+    const refreshPage = () => {
+
+        setTimeout(function(){
+            window.location.reload()
+        },2000)
+    }
+
+
     // SEND DOWNLOAD URL TO SERVER //
-    const downloadUrlToServer = async (info) => {
+    const downloadUrlToServer = async (id) => {
 
-        console.log(videoURL)
+        videoID = (id)
+        videoURL = (`https://www.youtube.com/watch?v=${videoID}`)
+        console.log(videoID)
 
-    
-        try{
+        const response = await fetch(`${url}`, {
 
-            const response = await fetch(`${url}`, {
-
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({     
-                    videoURL,
-                })  
-            })
-
-        }      
-
-        catch(err){
-            console.log(err)
-        }
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({     
+                videoURL,
+            })  
+        })
+        refreshPage();
     }
 
 
@@ -113,31 +117,27 @@ export default function Search(){
             <div class="py-5 rounded">
                 <div class="">
                         <div class="max-w-5xl">
-                            <form action="#" class="sm:gap-4">
-                    
+                        <form class="sm:gap-4">       
                             <div class="sm:flex-1">
-
                                 <div class="flex">
 
                                     <input
                                         onChange ={event => setuserSearch(event.target.value)} 
-                                        type="text"
                                         placeholder="ENTER URL OR NAME HERE"
                                         class="w-full p-3 text-gray-900 transition border-2 bg-white rounded-sm shadow-sm focus:ring focus:outline-none focus:ring-yellow-400 focus:border-white"
                                     /> 
 
-                                    <select name="type" id="type" class="py-2 px-8 font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
+                                    <select class="py-2 px-8 font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
                                         <option value="mp3">MP3</option>
                                         <option value="mp4">MP4</option>
                                     </select>
 
                                     <button                             
                                         onClick={sendDataToServer}
-                                        type="submit"
-                                        class="w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400"
-                                        >
+                                        class="w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
                                         <span class="text-md font-bold"> SEARCH </span>
                                     </button>
+
                                 </div>                                                  
                             </div>
                         </form>
@@ -146,8 +146,9 @@ export default function Search(){
                     {hasSearched ? (
 
                      <div class="mt-20">
-                        <div class="text-white text-3xl text-center mr-10 font-bold py-5">Results with the word: <span class="text-4xl mx-1 text-sky-400"> {userSearch} </span></div>
 
+                        <div class="text-white text-3xl text-center mr-10 font-bold py-5">Results with the word: <span class="text-4xl mx-1 text-sky-400"> {userSearch} </span></div>
+                        
                         {videoData.map(info => {
                             
 
@@ -169,7 +170,13 @@ export default function Search(){
                                     <p class="mx-4 text-2xl font-bold py-2">{info.snippet.channelTitle}</p>
                                     <p class="mt-1 font-bold text-lg mx-4"><span class="font-medium text-md">{info.snippet.title}</span></p>
                                     <p class="text-xs mx-4 py-2">{info.snippet.description}</p>
-                                    <button onClick={downloadUrlToServer} class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
+                                    <button onClick={() => {
+
+                                        downloadUrlToServer(info.id.videoId);
+                                        refreshPage();
+
+                                    }} 
+                                    class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
                                 </div>
 
                                 </a>

@@ -31,12 +31,12 @@ export default function LandingPage(){
                 </div>
             </div>
    
-            <div class="text-white flex items-center justify-center mr-14">
-                <p class="max-w-4xl mt-12 text-gray-500 text-lg">
+            <div class="text-white flex items-center justify-center mr-14" id="About">
+                <div class="max-w-4xl mt-12 text-gray-500 text-lg">
                     <p class="font-bold text-4xl py-5 text-gray-100">What's forbidden-mp3?</p>
                     Forbidden-mp3 is a tool which you can use to download videos & audios straight from youtube.
                     It uses <b>Node.js</b> package called <a class="underline" href="https://www.npmjs.com/package/ytdl-core"><b>YTDL-core</b></a> to download the content. It's also open source, so feel free to contribute
-                    at <a class="underline" href=""><b>Github</b></a> & fix some issues it has, or just inspect the code for fun! 😀
+                    at <a class="underline" href="https://github.com/miikaran/youtube-videoaudio-downloader"><b>Github</b></a> & fix some issues it has, or just inspect the code for fun! 😀
                     <br /><br />
                     You can give feedback here - <a class="underline text-blue-400" href="https://twitter.com/miikulitsu">Twitter</a>
                     <br /><br />
@@ -49,8 +49,8 @@ export default function LandingPage(){
 
                     <p class="mt-3 font-medium">File should now pop up to your downloaded files or whatever you have it set to!</p>
         
-                    <div class="space-y-8 mt-14">
-                        <div class="text-4xl font-bold text-gray-300 py-5">POPULAR QUESTIONS -</div>
+                    <div class="space-y-8 mt-14" id="FAQ">
+                        <div class="text-4xl font-bold text-gray-300 py-5">FAQ -</div>
                         <details class="group">
                             <summary class="flex items-center justify-center p-5 cursor-pointer border-2 border-indigo-300">
                             <h5 class="font-medium text-gray-200">
@@ -66,7 +66,7 @@ export default function LandingPage(){
                             >
                                 <path
                             
-                                stroke-width="2"
+                                strokeWidth="2"
                                 d="M19 9l-7 7-7-7"
                                 />
                             </svg>
@@ -82,7 +82,7 @@ export default function LandingPage(){
                             class="flex items-center justify-center p-5 cursor-pointer border-2 border-indigo-400"
                             >
                             <h5 class="font-medium text-gray-200">
-                            Is it legal to download videos/audios from here?
+                            How can i use it after the download feature is removed?
                             </h5>
 
                             <svg
@@ -93,14 +93,14 @@ export default function LandingPage(){
                                 stroke="currentColor"
                             >
                                 <path
-                                stroke-width="2"
+                                strokeWidth="2"
                                 d="M19 9l-7 7-7-7"
                                 />
                             </svg>
                             </summary>
 
                             <p class="px-4 mt-4 leading-relaxed text-gray-200">
-                            yessirr.
+                            This entire project is public at my <a class="font-bold underline" href="https://github.com/miikaran/youtube-videoaudio-downloader"> Github </a>, so you can just get the code from there & enable it by yourself!😀
                             </p>
                         </details>
 
@@ -119,33 +119,26 @@ export default function LandingPage(){
                             >
                                 <path
                             
-                                stroke-width="2"
+                                strokeWidth="2"
                                 d="M19 9l-7 7-7-7"
                                 />
                             </svg>
                             </summary>
 
                             <p class="px-4 mt-4 leading-relaxed text-gray-200">
-                            yessiiiiirrr.
+                            You'll never know. 😈
                             </p>
                         </details>
                     </div>
 
                     <div>
-                        <p>
-                            <p class="font-bold text-4xl py-5 mt-20 text-gray-100">How to contribute to this project?</p>
-                            This project is saved at our public <a class="underline font-bold" href="">GitHub</a> repository.
-                            You can fork it and start thinking solutions to issues i add every now and then. Every issues has information about the case & possible options 
-                            on how to fix it. Alternatively you can try to find them issues yourselves & let me know!😀
-                        </p>
+                        <p class="font-bold text-4xl py-5 mt-20 text-gray-100">How to contribute to this project?</p>
+                        This project is saved at my public <a class="underline font-bold" href="https://github.com/miikaran/youtube-videoaudio-downloader">GitHub</a> repository.
+                        You can fork it and start thinking solutions to issues i add every now and then. Every issues has information about the case & possible options 
+                        on how to fix it. Alternatively you can try to find them issues yourselves & let me know!😀
                         <p class="mt-5 text-xl font-bold">How to fork & access the issues?</p>
-                        <div class="mt-6">
-                        <video width="875" height="500" controls >
-                            <source src="" type="video/mp4"/>
-                        </video>
-                        </div>
                     </div>
-                </p>
+                </div>
             </div>
             <Footer />
         </div>

@@ -24,7 +24,6 @@ module.exports = {
 
             items: data.items,
             userSearch: req.userSearch,
-
         });     
         callback(null, {"success":200, "msg: ":"sent to firebase"})
     },
@@ -33,16 +32,19 @@ module.exports = {
     downloadContent: async function(req){
   
         // VALIDATE URL & DOWNLOAD THE CONTENT WITH YTDL-CORE //      
-        let videoURL = req.videoURL 
+        let videoURL = req.videoURL
         console.log(videoURL)
         let basicInfo = await ytdl.getBasicInfo(videoURL)
         let name = basicInfo.videoDetails.title
 
-        ytdl(videoURL)
-        .pipe(fs.createWriteStream(`${name}.mp4`));
-        console.log('lataus')   
-        
-
+        try{
+            ytdl(videoURL, { filter: 'audioonly', format: 'webm' })
+            .pipe(fs.createWriteStream(`${name}.mp4`));
+            console.log('lataus') 
+        }
+        catch(err){
+            console.log(err)
+        }
     },
 
     
@@ -50,7 +52,6 @@ module.exports = {
     getUserData: function(callback){
 
         firebase.database().ref("testi/").once("value").then(function(snapshot){
-
             callback(snapshot.val());
         })
    
