@@ -22,3 +22,24 @@ code {
     monospace;
 }
 
+
+@media only screen and (max-width: 750px) {
+  .inputbar{
+      display: block;
+      margin-right: 3.5vw;
+  }
+  .buttons{
+    margin-top: 20px;
+    margin-left: 0px;
+  }
+  .hero{
+    margin-left: 3vw;
+  }
+  .herotext{
+    font-size: 3rem;
+  }
+  .herotext2{
+    font-size: 1.5rem;
+  }
+
+}

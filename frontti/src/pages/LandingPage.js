@@ -13,16 +13,16 @@ export default function LandingPage(){
 
         <div class="">
             <Navigation />
-            <div class="text-left mt-32 mr-24 flex items-center justify-center hero">
+            <div class="text-left mt-32 flex items-center justify-center hero">
                 <div class="text-gray-800">
                     <div class="font-bold">
                        <br />
-                        <span class="text-transparent text-7xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                        <span class="text-transparent text-7xl herotext bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-pink-500"> One & only  open source </span>
                          <br />forbidden downloader - <br /> <span class="text-transparent bg-clip-text bg-gradient-to-l from-sky-300 to-pink-500">- coding project.</span></span> 
                     </div>
                     <DownloadAlert />
-                    <div class="text-3xl text-gray-200 mt-8">
+                    <div class="text-3xl text-gray-200 mt-8 herotext2">
                         Download youtube videos & audios fast & easily!<br />
                         <b>Select details, Enter video URL or name below & press search</b>
                     </div>
@@ -31,7 +31,7 @@ export default function LandingPage(){
                 </div>
             </div>
    
-            <div class="text-white flex items-center justify-center mr-14" id="About">
+            <div class="text-white flex items-center justify-center ml-7" id="About">
                 <div class="max-w-4xl mt-12 text-gray-500 text-lg">
                     <p class="font-bold text-4xl py-5 text-gray-100">What's forbidden-mp3?</p>
                     Forbidden-mp3 is a tool which you can use to download videos & audios straight from youtube.

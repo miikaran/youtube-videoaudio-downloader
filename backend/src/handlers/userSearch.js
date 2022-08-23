@@ -11,6 +11,7 @@ const youtubeAPIKey = ""
 module.exports = {
 
 
+    // STORE USER SEARCH TO FIREBASE //
     storeUserSearch: async function(req, callback){
 
         let userSearch = req.userSearch
@@ -24,21 +25,27 @@ module.exports = {
 
             items: data.items,
             userSearch: req.userSearch,
-        });     
+        });   
+
         callback(null, {"success":200, "msg: ":"sent to firebase"})
     },
 
 
+    // USE WANTED PARAMETERS & DOWNLOAD THE CONTENT //  
     downloadContent: async function(req){
-  
-        // VALIDATE URL & DOWNLOAD THE CONTENT WITH YTDL-CORE //      
+      
         let videoURL = req.videoURL
-        console.log(videoURL)
+        let videoQuality = req.videoQuality
+        let videoFormat = req.videoFormat
+
         let basicInfo = await ytdl.getBasicInfo(videoURL)
         let name = basicInfo.videoDetails.title
+        
+        console.log(videoURL)
+        console.log(req.videoFormat)
 
         try{
-            ytdl(videoURL, { filter: 'audioonly', format: 'webm' })
+            ytdl(videoURL, { quality: videoQuality, filter: videoFormat})
             .pipe(fs.createWriteStream(`${name}.mp4`));
             console.log('lataus') 
         }
@@ -49,6 +56,7 @@ module.exports = {
 
     
 
+    // GET USER DATA FROM FIREBASE //  
     getUserData: function(callback){
 
         firebase.database().ref("testi/").once("value").then(function(snapshot){

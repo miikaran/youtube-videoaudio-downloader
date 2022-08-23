@@ -10,8 +10,9 @@ module.exports = (app, db) => {
 
         userSearch.storeUserSearch(req.body, function(err, data){            
             res.send(data)        
-        });
+        }); 
     })
+    
     
     
     app.get("/VIDEOS/", function(req, res){
@@ -20,8 +21,9 @@ module.exports = (app, db) => {
             res.send({"statuscode":1, "result":data})
         });    
     })
-    
-    
+
+
+  
     app.put("/VIDEOS/", function(req, res){
     
         userSearch.downloadContent(req.body, function(err, data){            

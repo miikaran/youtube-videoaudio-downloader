@@ -24,8 +24,8 @@ export default function Search(){
     // SEND NECESSARY DATA TO SERVER //
     const sendDataToServer = async () => {
        
-        setvideoFormat("mp4")
-        setSearch("helou")
+        console.log(videoFormat)
+        setSearch("testi")
         console.log(userSearch)
     
         try{
@@ -37,10 +37,10 @@ export default function Search(){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+
                     search,
                     userSearch,
                     resultAmount,
-                    videoFormat,
                 })  
             })
         }      
@@ -54,6 +54,7 @@ export default function Search(){
 
 
 
+
     // FETCH DATA FROM SERVER //
     const fetchServerData = async() => {
 
@@ -64,12 +65,13 @@ export default function Search(){
             console.log(data)
             setvideoData(data.result.YOUTUBE_SEARCH.items)
             sethasSearched(true)
-
         }
+
         catch(err){
             console.log(err)
         }
     }
+
 
 
     // LOAD MORE RESULTS //
@@ -80,6 +82,7 @@ export default function Search(){
     }
 
 
+    // REFRESH AFTER DOWNLOAD //
     const refreshPage = () => {
 
         setTimeout(function(){
@@ -103,6 +106,8 @@ export default function Search(){
             },
             body: JSON.stringify({     
                 videoURL,
+                videoQuality,
+                videoFormat,
             })  
         })
         refreshPage();
@@ -119,7 +124,7 @@ export default function Search(){
                         <div class="max-w-5xl">
                         <form class="sm:gap-4">       
                             <div class="sm:flex-1">
-                                <div class="flex">
+                                <div class="flex inputbar">
 
                                     <input
                                         onChange ={event => setuserSearch(event.target.value)} 
@@ -127,14 +132,14 @@ export default function Search(){
                                         class="w-full p-3 text-gray-900 transition border-2 bg-white rounded-sm shadow-sm focus:ring focus:outline-none focus:ring-yellow-400 focus:border-white"
                                     /> 
 
-                                    <select class="py-2 px-8 font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
-                                        <option value="mp3">MP3</option>
-                                        <option value="mp4">MP4</option>
+                                    <select class="py-2 px-4 buttons font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
+                                        <option value="audioandvideo">VIDEO</option>
+                                        <option value="audioonly">AUDIO ONLY</option>
                                     </select>
 
                                     <button                             
                                         onClick={sendDataToServer}
-                                        class="w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
+                                        class="buttons w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
                                         <span class="text-md font-bold"> SEARCH </span>
                                     </button>
 
@@ -170,6 +175,13 @@ export default function Search(){
                                     <p class="mx-4 text-2xl font-bold py-2">{info.snippet.channelTitle}</p>
                                     <p class="mt-1 font-bold text-lg mx-4"><span class="font-medium text-md">{info.snippet.title}</span></p>
                                     <p class="text-xs mx-4 py-2">{info.snippet.description}</p>
+                                    <p class="mx-1 mt-4 font-bold">Choose preferred quality!</p>
+
+                                    <select class="py-2 px-8 font-bold border-2" onChange ={event => setvideoQuality(event.target.value)}>
+                                        <option value="highest">720p</option>
+                                        <option value="lowest">360p</option>
+                                    </select>
+
                                     <button onClick={() => {
 
                                         downloadUrlToServer(info.id.videoId);
