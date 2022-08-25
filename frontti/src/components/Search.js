@@ -45,7 +45,6 @@ export default function Search(){
   /*===================================
        SEND SEARCH DATA TO SERVER
     ===================================*/
-
     const searchDataToServer = async (event) => {
 
         event.preventDefault();
@@ -83,15 +82,15 @@ export default function Search(){
     /*===================================
          LOAD MORE SEARCH RESULTS
     ===================================*/
-    const loadMore = async () => {
+    const loadMore = () => {
 
         resultAmount += 10
-        await searchDataToServer();
+        searchDataToServer();
     }
 
 
    /*===================================
-          REFRESH AFTER CLICK DOWNLOAD
+        REFRESH AFTER PRESS DOWNLOAD
     ===================================*/
     const refreshPage = () => {
 
@@ -141,7 +140,7 @@ export default function Search(){
     return(
 
         <div class="mt-2">
-            <div class="py-5 rounded">
+            <div class="py-5">
                 <div class="">
                         <div class="max-w-5xl">
                         <form class="sm:gap-4">       
@@ -151,25 +150,25 @@ export default function Search(){
                                     <input
                                         onChange ={event => setuserSearch(event.target.value)} 
                                         placeholder="ENTER URL OR NAME HERE"
-                                        class="w-full p-3 text-gray-900 transition border-2 bg-white rounded-sm shadow-sm focus:ring focus:outline-none focus:ring-yellow-400 focus:border-white"
+                                        class="w-full p-3 py-4 text-lg font-medium text-gray-900 transition border-2 border-gray-300 rounded-sm shadow-sm focus:ring focus:outline-none focus:ring-yellow-400 focus:border-white"
                                     /> 
 
-                                    <select class="py-2 px-4 buttons font-bold border-2" onChange ={event => setvideoFormat(event.target.value)}>
+                                    <select class="py-2 buttons font-bold text-center border-2 border-gray-300" onChange ={event => setvideoFormat(event.target.value)}>
                                         <option value="audioandvideo">VIDEO</option>
                                         <option value="audioonly">AUDIO ONLY</option>
                                     </select>
 
                                     <button                             
                                         onClick={searchDataToServer}
-                                        class="buttons w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
-                                        <span class="text-md font-bold"> SEARCH </span>
+                                        class="buttons w-full mx-2 px-16 py-5  mt-4 text-white rounded-sm transition bg-gray-800 hover:bg-gray-700 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
+                                        <span class="text-lg font-bold"> SEARCH </span>
                                     </button>
 
-                                    <button                             
+                                    {/*<button                             
                                         onClick= {downloadContentFile}
                                         class="buttons w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
                                         <span class="text-md font-bold"> TESTI DOWNLOAD</span>
-                                    </button>
+                                    </button>*/}
                                 </div>                                                  
                             </div>
                         </form>

@@ -15,7 +15,7 @@ export default function Alert(){
 
         {show ? (
 
-            <div class="relative px-4 max-w-screen-md py-3 text-white bg-indigo-600 rounded-sm pr-14">
+            <div class="relative px-4 rounded-sm max-w-screen-md py-3 text-gray-700 bg-yellow-200 transition duration-300 hover:bg-gray-700 hover:text-gray-200 border-2 border-gray-800 rounded-sm pr-14">
                 <p class="text-lg font-medium text-left sm:text-center">
                 😢 Download feature removed due to copyright reasons! <br></br><a href="https://github.com/miikaran/youtube-videoaudio-downloader"><u class="italic hover:text-gray-300">Get the project from here & enable it for yourself!</u></a>
                 </p>

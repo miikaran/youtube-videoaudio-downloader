@@ -37,12 +37,13 @@ module.exports = (app, db) => {
 
                 try{
 
-                    ytdl(videoURL, {quality: videoQuality, format: videoFormat})
-                    .pipe(fs.createWriteStream(`${name}`))
+                    //UPLOAD TO SERVER
+                    let file = ytdl(videoURL, {quality: videoQuality, format: videoFormat})
+                    file.pipe(fs.createWriteStream(`${name}`))
 
-                    .on('close', () => {
+                    file.on('close', () => {
 
-                        // UPLOAD FINISHED //
+                        // DOWNLOAD TO CLIENT //
                         res.download(name)
                         console.log('download done')
                         resolve();

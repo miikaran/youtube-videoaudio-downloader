@@ -48,7 +48,7 @@ module.exports = {
 
 
     /*====================================
-         GET USER DATA FROM FIREBASE
+         GET SEARCH DATA FROM FIREBASE
     =====================================*/
     getUserData: function(callback){
 

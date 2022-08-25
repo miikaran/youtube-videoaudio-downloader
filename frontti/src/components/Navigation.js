@@ -4,11 +4,11 @@ export default function Navigation(){
 
     return(
 
-        <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8 mt-4">
+        <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
             <div class="md:flex md:items-center md:gap-12">
-                <a class="block mt-12" href="/">
-                    <img src={logo} width="100"></img>
+                <a class="block font-bold text-2xl logo" href="/">
+                    forbidden<span class="text-yellow-600">.MP4</span>
                 </a>
             </div>
             <div class="hidden md:block">
@@ -17,14 +17,14 @@ export default function Navigation(){
 
                 <ul class="flex items-center gap-20 text-lg font-medium">
                     <li>
-                    <a class="text-white transition  hover:text-white/75" href="#About">
+                    <a class="text-gray-700 transition  hover:text-gray-400" href="#About">
                         ABOUT
                     </a>
                     </li>
 
                     <li>
-                    <a class="text-white transition hover:text-white/75" href="https://github.com/miikaran/youtube-videoaudio-downloader">
-                        SOURCE <b class="text-teal-300">//</b> CONTRIBUTE
+                    <a class="text-gray-700 transition hover:text-gray-400" href="https://github.com/miikaran/youtube-videoaudio-downloader">
+                        SOURCE <b class="text-yellow-500">//</b> CONTRIBUTE
                     </a>
 
             
@@ -32,8 +32,9 @@ export default function Navigation(){
                 </ul>
                 </nav>
             </div>
-            </div>
         </div>
+
+    </div>
 
     )
 }

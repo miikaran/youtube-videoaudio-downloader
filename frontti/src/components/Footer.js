@@ -3,13 +3,13 @@ export default function Footer(){
 
     return (
 
-        <footer class="text-center mt-40 bg-gray-900">
+        <footer class="text-center mt-40 bg-gray-800">
         <div class="w-full px-4 py-5 mx-auto sm:px-6 lg:px-8">
         <div class="mx-auto space-y-6">
             <div class="flex justify-center space-x-6">
             <a
                 class="text-blue-500 hover:text-opacity-75"
-                href="/"
+                href="https://twitter.com/miikulitsu"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
@@ -28,7 +28,7 @@ export default function Footer(){
     
             <a
                 class="text-gray-200 hover:text-opacity-75"
-                href="/"
+                href="https://github.com/miikaran/youtube-videoaudio-downloader"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -48,7 +48,7 @@ export default function Footer(){
             </a>
             </div>
         </div>    
-            <p class="text-sm text-gray-200 mt-2 ml-3 font-medium">2022 @ Miika Rantalaiho</p>
+            <p class="text-sm text-gray-200 mt-2 ml-3 font-medium">2022 @ forbidden.MP4</p>
         </div>
     </footer>
     )
