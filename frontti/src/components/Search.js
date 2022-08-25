@@ -14,15 +14,41 @@ export default function Search(){
     const [search, setSearch] = useState('') ;
     
     const port = 4000
-    const url = `http://localhost:${port}/VIDEOS/` // SERVERSIDE API ENDPOINT //
+    const url = `http://localhost:${port}/VIDEOS/` // SERVERSIDE API ENDPOINT FOR VIDEOS //
+    const url2 = `http://localhost:${port}/download` //SERVERSIDE API ENDPOINT FOR UPLOADS & DOWNLOADS //
     let resultAmount = 10; 
     let videoID = '';
     let videoURL = '';
 
 
 
-    // SEND NECESSARY DATA TO SERVER //
-    const sendDataToServer = async () => {
+    /*===================================
+          FETCH DATA FROM SERVER
+    ===================================*/
+    const fetchServerData = async() => {
+
+        try{
+
+            const response = await fetch(url)
+            const data = await response.json()     
+            console.log(data)
+            setvideoData(data.result.YOUTUBE_SEARCH.items)
+            sethasSearched(true)
+        }
+
+        catch(err){
+            console.log(err)
+        }
+    }
+    
+    
+  /*===================================
+       SEND SEARCH DATA TO SERVER
+    ===================================*/
+
+    const searchDataToServer = async (event) => {
+
+        event.preventDefault();
        
         console.log(videoFormat)
         setSearch("testi")
@@ -54,35 +80,19 @@ export default function Search(){
 
 
 
-
-    // FETCH DATA FROM SERVER //
-    const fetchServerData = async() => {
-
-        try{
-
-            const response = await fetch(url)
-            const data = await response.json()     
-            console.log(data)
-            setvideoData(data.result.YOUTUBE_SEARCH.items)
-            sethasSearched(true)
-        }
-
-        catch(err){
-            console.log(err)
-        }
-    }
-
-
-
-    // LOAD MORE RESULTS //
+    /*===================================
+         LOAD MORE SEARCH RESULTS
+    ===================================*/
     const loadMore = async () => {
 
         resultAmount += 10
-        await sendDataToServer();
+        await searchDataToServer();
     }
 
 
-    // REFRESH AFTER DOWNLOAD //
+   /*===================================
+          REFRESH AFTER CLICK DOWNLOAD
+    ===================================*/
     const refreshPage = () => {
 
         setTimeout(function(){
@@ -91,7 +101,9 @@ export default function Search(){
     }
 
 
-    // SEND DOWNLOAD URL TO SERVER //
+    /*===================================
+         SEND DOWNLOAD URL TO SERVER
+    ===================================*/
     const downloadUrlToServer = async (id) => {
 
         videoID = (id)
@@ -110,7 +122,17 @@ export default function Search(){
                 videoFormat,
             })  
         })
-        refreshPage();
+    }
+
+
+    /*===================================
+              DOWNLOAD FILE
+    =================================== */
+    const downloadContentFile = (event) => {
+
+        event.preventDefault();
+        window.location.href = url
+
     }
 
 
@@ -138,11 +160,16 @@ export default function Search(){
                                     </select>
 
                                     <button                             
-                                        onClick={sendDataToServer}
+                                        onClick={searchDataToServer}
                                         class="buttons w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
                                         <span class="text-md font-bold"> SEARCH </span>
                                     </button>
 
+                                    <button                             
+                                        onClick= {downloadContentFile}
+                                        class="buttons w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
+                                        <span class="text-md font-bold"> TESTI DOWNLOAD</span>
+                                    </button>
                                 </div>                                                  
                             </div>
                         </form>
@@ -185,8 +212,7 @@ export default function Search(){
                                     <button onClick={() => {
 
                                         downloadUrlToServer(info.id.videoId);
-                                        refreshPage();
-
+                                        downloadContentFile();
                                     }} 
                                     class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
                                 </div>

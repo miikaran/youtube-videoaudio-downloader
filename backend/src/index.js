@@ -1,5 +1,4 @@
 const express = require('express')
-const fs = require('fs');
 const setupBodyparser = require('./setup/bodyparser')
 const setupRouting = require('./setup/routing')
 const port = 4000

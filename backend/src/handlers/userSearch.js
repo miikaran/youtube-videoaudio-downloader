@@ -1,9 +1,6 @@
 const firebase = require('../setup/firebase')
-const express = require('express')
-const fs = require('fs');
-const ytdl = require('ytdl-core');
-const app = express()
 const fetch = require("node-fetch");
+const ytdl = require('ytdl-core')
 
 const youtubeAPIKey = ""
 
@@ -11,7 +8,9 @@ const youtubeAPIKey = ""
 module.exports = {
 
 
-    // STORE USER SEARCH TO FIREBASE //
+    /*===============================================
+       FETCH USER SEARCH DATA & STORE IT TO FIREBASE
+    =================================================*/
     storeUserSearch: async function(req, callback){
 
         let userSearch = req.userSearch
@@ -26,37 +25,31 @@ module.exports = {
             items: data.items,
             userSearch: req.userSearch,
         });   
-
+        
         callback(null, {"success":200, "msg: ":"sent to firebase"})
     },
 
 
-    // USE WANTED PARAMETERS & DOWNLOAD THE CONTENT //  
-    downloadContent: async function(req){
+    /*===================================
+          SET DOWNLOAD PARAMETERS
+    ===================================*/
+    downloadContent: async function(req, callback){
       
         let videoURL = req.videoURL
         let videoQuality = req.videoQuality
         let videoFormat = req.videoFormat
 
         let basicInfo = await ytdl.getBasicInfo(videoURL)
-        let name = basicInfo.videoDetails.title
-        
-        console.log(videoURL)
-        console.log(req.videoFormat)
+        let name = (basicInfo.videoDetails.title + '.mp4')
 
-        try{
-            ytdl(videoURL, { quality: videoQuality, filter: videoFormat})
-            .pipe(fs.createWriteStream(`${name}.mp4`));
-            console.log('lataus') 
-        }
-        catch(err){
-            console.log(err)
-        }
+        return callback(name, videoURL, videoQuality, videoFormat)
+
     },
 
-    
 
-    // GET USER DATA FROM FIREBASE //  
+    /*====================================
+         GET USER DATA FROM FIREBASE
+    =====================================*/
     getUserData: function(callback){
 
         firebase.database().ref("testi/").once("value").then(function(snapshot){
