@@ -33,8 +33,8 @@ export default function LandingPage(){
    
             <div class="text-white flex items-center justify-center ml-7 info" id="About">
                 <div class="max-w-4xl text-gray-600 mt-16 text-lg">
-                    <p class="font-bold text-4xl py-5 text-gray-700">What's <span class="logo text-gray-800">forbiddens<span class="text-yellow-600">.MP4</span></span>?</p>
-                    Forbidden.MP4 is a tool which you can use to download videos & audios straight from youtube.
+                    <p class="font-bold text-4xl py-5 text-gray-700">What's <span class="logo text-gray-800">forbidden<span class="text-yellow-600">.MP4</span></span>?</p>
+                    Forbidden.MP4 is a tool which you can use to download videos, audios & shorts straight from youtube.
                     It uses <b>Node.js</b> package called <a class="underline" href="https://www.npmjs.com/package/ytdl-core"><b>YTDL-core</b></a> to download the content. It's also open source, so feel free to contribute
                     at <a class="underline" href="https://github.com/miikaran/youtube-videoaudio-downloader"><b>Github</b></a> & fix some issues it has, or just inspect the code for fun! 😀
                     <br /><br />

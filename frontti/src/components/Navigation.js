@@ -26,8 +26,12 @@ export default function Navigation(){
                     <a class="text-gray-700 transition hover:text-gray-400" href="https://github.com/miikaran/youtube-videoaudio-downloader">
                         SOURCE <b class="text-yellow-500">//</b> CONTRIBUTE
                     </a>
+                    </li>    
 
-            
+                    <li>
+                    <a class="text-gray-700 transition hover:text-gray-400" href="#FAQ">
+                        FAQ
+                    </a>
                     </li>               
                 </ul>
                 </nav>

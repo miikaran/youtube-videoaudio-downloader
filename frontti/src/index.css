@@ -40,18 +40,21 @@ code {
 }
 
 .hero{
-  background-image: url('./assets/5566879.jpg');
+  
+  background-color: rgba(0, 0, 0, 0.116);
+  /*background-image: url('./assets/5566879.jpg');*/
   background-size: cover;
   background-position: -0.5vw 25%;
+  transition: all 0.7s ease;
+}
+
+.hero:hover{
+  background-position: -0.5vw 24%;
 }
 
 .logo{
   letter-spacing: -1.5px;
 }
 
-.svg{
-  margin-top: 0vh;
-  margin-left: 25vw;
-}
 
 

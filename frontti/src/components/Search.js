@@ -45,9 +45,9 @@ export default function Search(){
   /*===================================
        SEND SEARCH DATA TO SERVER
     ===================================*/
-    const searchDataToServer = async (event) => {
+    const searchDataToServer = async (e) => {
 
-        event.preventDefault();
+        e.preventDefault();
        
         console.log(videoFormat)
         setSearch("testi")
@@ -100,41 +100,40 @@ export default function Search(){
     }
 
 
+
     /*===================================
          SEND DOWNLOAD URL TO SERVER
     ===================================*/
     const downloadUrlToServer = async (id) => {
 
         videoID = (id)
-        videoURL = (`https://www.youtube.com/watch?v=${videoID}`)
-        console.log(videoID)
+        //videoURL = (`https://www.youtube.com/watch?v=${videoID}`)
+        videoURL = (`https://www.youtube.com/watch?v=lTTajzrSkCw`)
+        console.log(videoURL)
 
-        const response = await fetch(`${url}`, {
+        const response = await fetch(`${url2}`, {
 
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({     
-                videoURL,
+            body: JSON.stringify({ 
+                videoURL,    
                 videoQuality,
                 videoFormat,
             })  
         })
+        downloadContentFile();
+
     }
 
 
     /*===================================
               DOWNLOAD FILE
-    =================================== */
-    const downloadContentFile = (event) => {
-
-        event.preventDefault();
-        window.location.href = url
-
+    ===================================*/
+    const downloadContentFile = () => {
+        window.location.href = url2
     }
-
-
 
 
     return(
@@ -160,23 +159,25 @@ export default function Search(){
 
                                     <button                             
                                         onClick={searchDataToServer}
-                                        class="buttons w-full mx-2 px-16 py-5  mt-4 text-white rounded-sm transition bg-gray-800 hover:bg-gray-700 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
-                                        <span class="text-lg font-bold"> SEARCH </span>
+                                        class="buttons w-full mx-2 px-14 py-5  mt-4 text-white rounded-sm transition bg-gray-800 hover:bg-gray-700 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
+                                        <span class="text-lg font-bold">SEARCH➜</span>
                                     </button>
-
-                                    {/*<button                             
-                                        onClick= {downloadContentFile}
-                                        class="buttons w-full mx-2 px-12 py-3 mt-4 text-white transition bg-pink-600 hover:bg-pink-800 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
-                                        <span class="text-md font-bold"> TESTI DOWNLOAD</span>
-                                    </button>*/}
                                 </div>                                                  
                             </div>
                         </form>
                     </div>
                     
-                    {hasSearched ? (
+        
 
                      <div class="mt-20">
+
+                        <button                             
+                            onClick={() => {
+                                downloadUrlToServer();
+                            }}
+                            class="buttons w-full mx-2 px-14 py-5  mt-4 text-white rounded-sm transition bg-gray-800 hover:bg-gray-700 sm:mt-0 sm:w-auto group focus:outline-none focus:ring focus:ring-yellow-400">
+                            <span class="text-lg font-bold">teestii➜</span>
+                        </button>
 
                         <div class="text-white text-3xl text-center mr-10 font-bold py-5">Results with the word: <span class="text-4xl mx-1 text-sky-400"> {userSearch} </span></div>
                         
@@ -209,16 +210,13 @@ export default function Search(){
                                     </select>
 
                                     <button onClick={() => {
-
-                                        downloadUrlToServer(info.id.videoId);
-                                        downloadContentFile();
-                                    }} 
+                                      downloadUrlToServer(info.id.videoId)
+                                      downloadContentFile();
+                                    }}
                                     class="bg-indigo-500 p-2 px-5 font-bold text-white mx-4 mt-5 hover:bg-indigo-700">DOWNLOAD</button>
                                 </div>
 
-                                </a>
-
-                                
+                                </a>                               
                             )
 
                         })}
@@ -230,7 +228,6 @@ export default function Search(){
                     </div>
                         
                     </div>
-                    ): null}
 
                 </div>
             </div>

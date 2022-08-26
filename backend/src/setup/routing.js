@@ -25,27 +25,34 @@ module.exports = (app, db) => {
     })
 
 
+    app.post("/download", function(req, res){
+
+        userSearch.uploadContent(req.body, function(err, data){  
+            res.send(data)   
+        });   
+    })
+
+
+
     app.get('/download', function(req, res) {
 
         /*===================================
             UPLOAD THE CONTENT TO SERVER 
             & DOWNLOAD TO CLIENT AFTER
         =================================== */
-        userSearch.downloadContent('download', function(name, videoURL, videoQuality, videoFormat){
+        userSearch.downloadContent(req.body, function(videoURL, name, videoQuality, videoFormat){
   
             new Promise((resolve, reject) => {
 
                 try{
 
-                    //UPLOAD TO SERVER
-                    let file = ytdl(videoURL, {quality: videoQuality, format: videoFormat})
-                    file.pipe(fs.createWriteStream(`${name}`))
-
-                    file.on('close', () => {
+                    // UPLOAD TO SERVER //
+                    ytdl(videoURL, {quality: videoQuality, format: videoFormat})
+                    .pipe(fs.createWriteStream(`${name}`))
+                    .on('close', () => {
 
                         // DOWNLOAD TO CLIENT //
                         res.download(name)
-                        console.log('download done')
                         resolve();
                         
                         // DELETE FILE FROM SERVER //
@@ -55,21 +62,13 @@ module.exports = (app, db) => {
 
                     })
                 }
+
                 catch(err){
                     console.log(err)
                 }
             }) 
         })
     })
-
-      
-    app.put("/VIDEOS/", function(req, res){
-    
-        userSearch.downloadContent(req.body, function(err, data){            
-            res.send(data)        
-        });   
-    })
-
 
     app.use(router)
     

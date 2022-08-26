@@ -1,8 +1,14 @@
 const firebase = require('../setup/firebase')
 const fetch = require("node-fetch");
 const ytdl = require('ytdl-core')
+const fs = require('fs');
 
 const youtubeAPIKey = ""
+
+let videoURL;
+let name;
+let videoQuality;
+let videoFormat;
 
 
 module.exports = {
@@ -13,8 +19,8 @@ module.exports = {
     =================================================*/
     storeUserSearch: async function(req, callback){
 
-        let userSearch = req.userSearch
-        let objectName = "YOUTUBE_SEARCH"
+        const userSearch = req.userSearch
+        const objectName = "YOUTUBE_SEARCH"
         const youtubeURL = `https://www.googleapis.com/youtube/v3/search?key=${youtubeAPIKey}&type=video&part=snippet&maxResults=${req.resultAmount}&q=${userSearch}`
         
         const response = await fetch(youtubeURL)
@@ -30,21 +36,32 @@ module.exports = {
     },
 
 
-    /*===================================
-          SET DOWNLOAD PARAMETERS
-    ===================================*/
-    downloadContent: async function(req, callback){
+
+    /*======================================
+         SETUP PARAMETERS FOR DOWNLOAD
+    ========================================*/
+    uploadContent: async function(req, callback){
       
-        let videoURL = req.videoURL
-        let videoQuality = req.videoQuality
-        let videoFormat = req.videoFormat
+        videoURL = req.videoURL
+        
+        const videoQuality = req.videoQuality
+        const videoFormat = req.videoFormat
 
-        let basicInfo = await ytdl.getBasicInfo(videoURL)
-        let name = (basicInfo.videoDetails.title + '.mp4')
+        const basicInfo = await ytdl.getBasicInfo(videoURL)
+        name = (basicInfo.videoDetails.title + '.mp4')
 
-        return callback(name, videoURL, videoQuality, videoFormat)
-
+        return callback(videoURL, name, videoQuality, videoFormat)
     },
+
+
+    /*======================================
+        RETURN NEEDED VALUES FOR DOWNLOAD
+    ========================================*/
+    downloadContent: function(req, callback){
+      
+        return callback(videoURL, name, videoQuality, videoFormat)
+    },
+
 
 
     /*====================================
