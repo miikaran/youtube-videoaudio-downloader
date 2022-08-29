@@ -6,7 +6,7 @@ export default function DownloadAnimation(){
     const [counter, setcounter] = useState(10);
 
     const closeAlert = () =>{
-        
+
         setTimeout(function(){
             setshow(false)
         }, 2000)
@@ -28,11 +28,11 @@ export default function DownloadAnimation(){
     
     return (
 
-        <div class="fixed inset-x-0 bottom-0 pb-3 mt-10 flex justify-end download-alert">
+        <div class="z-30 fixed inset-x-0 bottom-0 pb-3 mt-10 flex justify-end download-alert">
 
             {show ? (
 
-                <div class="relative px-10 rounded-sm py-5 text-gray-100 bg-gray-700 transition duration-300 hover:bg-gray-800 rounded-sm pr-14">
+                <div class="px-10 rounded-sm py-5 text-gray-100 bg-gray-700 transition duration-300 hover:bg-gray-800 rounded-sm pr-14">
                     <p class="text-md font-medium text-left">
                     Your download has started! <br /> It might take a second depending on the size of the file.<br></br>
                     <i>Closing in... {counter}</i>

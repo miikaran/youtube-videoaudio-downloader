@@ -7,7 +7,7 @@ export default function Navigation(props){
 
     return(
 
-        <nav className="w-full bg-white shadow navbg">
+        <nav className="bg-white shadow navbg">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-10">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">

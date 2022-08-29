@@ -33,7 +33,11 @@ export default function Search(){
 
             setsearching(true);
             const response = await fetch(url)
-            const data = await response.json()    
+            const data = await response.json()  
+            
+            if(!response.ok){
+                alert('Error searching the data')
+            }
 
             setvideoData(data.result.YOUTUBE_SEARCH.items)
             sethasSearched(true)
@@ -45,13 +49,13 @@ export default function Search(){
         }
     }
 
-    
-    
+
+
   /*===================================
        SEND SEARCH DATA TO SERVER
     ===================================*/
     const searchDataToServer = async (e) => {
-       
+
         e.preventDefault();
 
         try{
@@ -68,6 +72,10 @@ export default function Search(){
                     resultAmount,
                 })  
             })
+
+            if(!response.ok){
+                alert('Error searching the data')
+            }
         }      
 
         catch(err){
@@ -85,9 +93,10 @@ export default function Search(){
     const loadMore =  (e) => {
 
         e.preventDefault();
-        resultAmount += 5
+        resultAmount += 5;
         searchDataToServer();
     }
+
 
 
     /*===================================
@@ -174,19 +183,19 @@ export default function Search(){
         
                     { hasSearched ? (
 
-                     <div class="mt-20">
+                     <div class="mt-20 videos">
                         
                         {videoData.map(info => {
                             
                             return (
 
-                                <div class="relative block p-8 py-14 overflow-hidden bg-gray-200 shadow-2xl mt-2 border-4 border-gray-300" key={info.id.videoId}>
+                                <div class="boxes relative block p-8 py-14 overflow-hidden bg-gray-200 shadow-2xl mt-2 border-4 border-gray-300" key={info.id.videoId}>
 
                                 <span class="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-green-500 via-blue-700 to-purple-600"></span>
 
                                 <div class="justify-between sm:flex">
                                     <div class="ml-5">
-                                        <img class="sm:h-42 lg:h-60 bg-gray-900 p-1" src={info.snippet.thumbnails.medium.url} alt="thumbnail"/>
+                                        <img class="lg:h-50 bg-gray-900 p-1" src={info.snippet.thumbnails.medium.url} alt="thumbnail"/>
                                     </div>
                                 </div>
 
@@ -197,20 +206,20 @@ export default function Search(){
                                     <p class="mx-4 mt-4 font-bold">Choose preferred quality!</p>
 
                                     
-                                    { videoFormat == 'audioandvideo' ? (
+                                    { videoFormat === 'audioonly' ? (
 
-                                    <select class="py-2 px-8 mx-3 font-bold border-2 quality-select" onChange ={event => setvideoQuality(event.target.value)}>
+                                        null
+
+                                    ):  <select class="py-2 px-8 mx-3 font-bold border-2 quality-select" onChange ={event => setvideoQuality(event.target.value)}>
                                         <option value="highest">720p</option>
                                         <option value="lowest">360p</option>
-                                    </select>
-
-                                    ): null}
+                                        </select>}
 
                                     
                                     <button onClick={() => {
                                       downloadUrlToServer(info.id.videoId)
                                     }}
-                                    class="bg-indigo-500 p-2 px-4 font-bold text-white mt-5 hover:bg-indigo-700 download-button">DOWNLOAD
+                                    class="bg-indigo-500 p-2 px-4 mx-2 font-bold text-white mt-5 hover:bg-indigo-700 download-button">DOWNLOAD
                                     </button>
                                 </div>
 

@@ -33,10 +33,10 @@ export default function LandingPage(){
                             <b>Select details, Enter video URL or name below & press search</b>
                         </div>
                         <InfoAlert />
-                        <Search />           
+                        <Search />        
                     </div>
                 </div>
-                
+
                 <div class="text-white flex items-center justify-center ml-7 info" id="About">
                     <div class="max-w-4xl text-gray-600 mt-16 text-lg about">
                         <p class="font-bold text-4xl py-5 text-gray-700 about">What's <span class="about logo text-gray-800">forbidden<span class="logotext text-yellow-600">.MP4</span></span>?</p>
@@ -53,7 +53,7 @@ export default function LandingPage(){
                         3. Download the one you need from the list.<br />
                         4. <b>Done!</b> <br />
 
-                        <p class="mt-3 font-medium">Your file should now start downloading to your downloaded files or whatever you have it set to!</p>
+                        <p class="mt-3 font-medium">Your file should now start downloading!</p>
             
                         <div class="space-y-8 mt-14" id="FAQ">
                             <div class="text-4xl font-bold text-gray-700 py-5 about">FAQ -</div>
