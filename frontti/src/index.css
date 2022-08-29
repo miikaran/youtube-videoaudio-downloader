@@ -17,11 +17,19 @@ code {
     monospace;
 }
 
+.herobg{
+  background: #F09819;
+  background: -webkit-linear-gradient(to top right, #fcf6c4, #f7dd49);
+  background: linear-gradient(to top right, #fcf6c4, #f7dd49);
+  
+  
+  
+}
 
 @media only screen and (max-width: 750px) {
   .inputbar{
-      display: block;
-      margin-right: 3.5vw;
+    display: block;
+    margin-right: 3.5vw;
   }
   .buttons{
     margin-top: 20px;
@@ -30,26 +38,56 @@ code {
   .hero{
     margin-left: 3vw;
   }
+  .herobg{
+    background-position: -10.5vw -25vh; ;
+  }
   .herotext{
     font-size: 3rem;
   }
   .herotext2{
     font-size: 1.5rem;
   }
+}
+
+
+#light{
+  background-color: rgb(255, 255, 255);
+}
+
+#dark{
+  background-color: rgb(7, 12, 15);
+}
+
+#dark .about{
+  color: rgb(255, 255, 255);
+}
+
+#dark .herobg{
+  background-image: none;
+  background: #091518;
 
 }
 
-.hero{
-  
-  background-color: rgba(0, 0, 0, 0.116);
-  /*background-image: url('./assets/5566879.jpg');*/
-  background-size: cover;
-  background-position: -0.5vw 25%;
-  transition: all 0.7s ease;
+#dark .navbg{
+  background-color: rgb(7, 17, 22);
 }
 
-.hero:hover{
-  background-position: -0.5vw 24%;
+#dark .herocontent{
+  color: white;
+}
+
+#dark .searchbutton{
+  border: 1px solid white;
+  background-color: rgb(1, 24, 39);
+}
+
+#dark .searchbutton:hover{
+  background-color: rgb(3, 32, 51);
+}
+
+#dark .sourcebutton{
+  background-color: rgb(14, 41, 53);
+  color: rgb(253, 253, 253);
 }
 
 .logo{
@@ -57,4 +95,49 @@ code {
 }
 
 
+.alert{
+  animation: slideIn 1s ease-in-out;
+  animation-delay: 10ms;
+}
+
+
+.download-alert{
+
+  animation: slideIn 1s ease-in-out;
+  animation-delay: 10ms;
+
+}
+
+@keyframes slideIn {
+  0% {
+      transform: translateX(500px);
+  }
+  100% {
+      transform: translateX(0px);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+
+  .hero{
+    background-position: -50vw 40%;
+  }
+  .hero:hover{
+    background-position: -50vw 40%;
+  }
+  
+}
+
+
+@media only screen and (max-width: 364px) {
+
+  .download-button{
+    margin-left: 13px;
+  }
+
+  .quality-select{
+    margin-top: 13px;
+  }
+  
+}
 

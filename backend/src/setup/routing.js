@@ -47,10 +47,11 @@ module.exports = (app, db) => {
                 try{
 
                     // UPLOAD TO SERVER //
-                    ytdl(videoURL, {quality: videoQuality, format: videoFormat})
+                    ytdl(videoURL, {quality: videoQuality, filter: videoFormat})
                     .pipe(fs.createWriteStream(`${name}`))
                     .on('close', () => {
 
+                        console.log(videoFormat, videoQuality)
                         // DOWNLOAD TO CLIENT //
                         res.download(name)
                         resolve();

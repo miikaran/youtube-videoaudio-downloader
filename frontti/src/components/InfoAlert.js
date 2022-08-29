@@ -1,23 +1,39 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 
 export default function Alert(){
 
     const [show, setshow] = useState(true);
+    const [counter, setcounter] = useState(10);
 
     const closeAlert = () =>{
         setshow(false)
     }
 
+    // SIMPLE COUNTDOWN TIMER // 
+    useEffect(() => {
+
+        const timer = counter > 0 && setInterval(() => setcounter(counter - 1), 1000);
+
+        if(counter == 0){
+            setshow(false);
+        }
+
+        return () => clearInterval(timer); 
+         
+      }, [counter]);
+
     return (
 
-        <div class="fixed inset-x-0 bottom-0 px-4 pb-3 flex justify-end">
+        <div class="fixed inset-x-0 bottom-0 px-4 pb-3 flex justify-end alert">
 
         {show ? (
 
             <div class="relative px-4 rounded-sm max-w-screen-md py-3 text-gray-700 bg-yellow-200 transition duration-300 hover:bg-gray-700 hover:text-gray-200 border-2 border-gray-800 rounded-sm pr-14">
                 <p class="text-lg font-medium text-left sm:text-center">
-                😢 Download feature removed due to copyright reasons! <br></br><a href="https://github.com/miikaran/youtube-videoaudio-downloader"><u class="italic hover:text-gray-300">Get the project from here & enable it for yourself!</u></a>
+                😊<a href="https://github.com/miikaran/youtube-videoaudio-downloader"><u class="italic hover:text-gray-300">Get the entire project from here. It's free!</u></a>
+                <br />
+                Closing in.. <span class="text-2xl">{counter}</span>
                 </p>
 
                 <button

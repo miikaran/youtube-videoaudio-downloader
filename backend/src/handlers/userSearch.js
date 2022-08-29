@@ -1,7 +1,6 @@
 const firebase = require('../setup/firebase')
 const fetch = require("node-fetch");
 const ytdl = require('ytdl-core')
-const fs = require('fs');
 
 const youtubeAPIKey = ""
 
@@ -26,7 +25,7 @@ module.exports = {
         const response = await fetch(youtubeURL)
         const data = await response.json()
 
-        firebase.database().ref("testi/" + objectName).set({
+        firebase.database().ref("SEARCHED/" + objectName).set({
 
             items: data.items,
             userSearch: req.userSearch,
@@ -42,13 +41,13 @@ module.exports = {
     ========================================*/
     uploadContent: async function(req, callback){
       
-        videoURL = req.videoURL
-        
-        const videoQuality = req.videoQuality
-        const videoFormat = req.videoFormat
+        videoURL = req.videoURL    
+        videoQuality = req.videoQuality
+        videoFormat = req.videoFormat
 
         const basicInfo = await ytdl.getBasicInfo(videoURL)
         name = (basicInfo.videoDetails.title + '.mp4')
+        console.log(videoFormat)
 
         return callback(videoURL, name, videoQuality, videoFormat)
     },
@@ -58,7 +57,7 @@ module.exports = {
         RETURN NEEDED VALUES FOR DOWNLOAD
     ========================================*/
     downloadContent: function(req, callback){
-      
+        console.log(videoFormat)
         return callback(videoURL, name, videoQuality, videoFormat)
     },
 
@@ -69,7 +68,7 @@ module.exports = {
     =====================================*/
     getUserData: function(callback){
 
-        firebase.database().ref("testi/").once("value").then(function(snapshot){
+        firebase.database().ref("SEARCHED/").once("value").then(function(snapshot){
             callback(snapshot.val());
         })
    
