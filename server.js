@@ -1,7 +1,7 @@
 const express = require('express')
 const setupBodyparser = require('./setup/bodyparser')
 const setupRouting = require('./setup/routing')
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 5000;
 
 
 const app = express();
