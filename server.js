@@ -10,12 +10,12 @@ setupBodyparser(app)
 
 if (process.env.NODE_ENV == 'production') {
 
-    app.use(express.static('frontti/build'))
+    app.use(express.static('client/build'))
 }
 
 
 
-function startAll() {
+async function startAll() {
 
     app.listen(PORT, function(err){
 
