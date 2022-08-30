@@ -21,11 +21,10 @@
 
 <div align=center>
 
-  ## <a href="https://forbidden-mp4-downloader.herokuapp.com/">Live at Heroku</a>
+  # <a href="https://forbidden-mp4-downloader.herokuapp.com/">Live at Heroku</a>
   
 </div>
 
-<br>
 
 ## What's forbidden.MP4?
 
