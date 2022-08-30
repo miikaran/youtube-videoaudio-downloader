@@ -1,4 +1,4 @@
-/*require('dotenv').config();
+require('dotenv').config();
 const firebase = require('firebase-admin')
 const admin = require("firebase-admin");
 
@@ -7,7 +7,7 @@ const config = {
   type: "service_account",
   project_id: process.env.PROJECT_ID,
   private_key_id: process.env.PRIVATE_KEY_ID,
-  private_key: process.env.PRIVATE_KEY,
+  private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
   client_email: process.env.CLIENT_EMAIL,
   client_id: process.env.CLIENT_ID,
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
@@ -22,4 +22,4 @@ const app = admin.initializeApp({
   databaseURL: process.env.FIREBASE_URL
 });
 
-module.exports = app;*/
+module.exports = app;
