@@ -1,4 +1,4 @@
-require('dotenv').config();
+/*require('dotenv').config();
 const firebase = require('firebase-admin')
 var admin = require("firebase-admin");
 
@@ -22,4 +22,4 @@ const app = admin.initializeApp({
   databaseURL: process.env.FIREBASE_URL
 });
 
-module.exports = app;
+module.exports = app;*/

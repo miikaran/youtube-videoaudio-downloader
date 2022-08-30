@@ -18,6 +18,8 @@ export default function Search(){
     const port = 4000
     const url = `https://forbidden-mp4-downloader.herokuapp.com/VIDEOS/` // SERVERSIDE API ENDPOINT FOR VIDEOS //
     const url2 = `https://forbidden-mp4-downloader.herokuapp.com/download` //SERVERSIDE API ENDPOINT FOR UPLOADS & DOWNLOADS //
+    //const url = `http://localhost:4000/VIDEOS/`
+    //const url2 = `http://localhost:4000/download`
     let resultAmount = 5; 
     let videoID = '';
     let videoURL = '';
