@@ -144,6 +144,9 @@ code {
   .hero:hover{
     background-position: -50vw 40%;
   }
+  .searchanimation{
+    margin-left: 20vw;
+  }
   
 }
 
@@ -156,5 +159,8 @@ code {
 
   .quality-select{
     margin-top: 13px;
-  } 
+  }
+  .searchanimation{
+    margin-left: 35vw;
+  }
 }
