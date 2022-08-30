@@ -1,8 +1,8 @@
 /*require('dotenv').config();
 const firebase = require('firebase-admin')
-var admin = require("firebase-admin");
+const admin = require("firebase-admin");
 
-var config = {
+const config = {
 
   type: "service_account",
   project_id: process.env.PROJECT_ID,

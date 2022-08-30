@@ -23,5 +23,6 @@
     "nodemon": "^2.0.19",
     "routing": "^0.0.2",
     "ytdl-core": "^4.9.1"
-  }
+  },
+  "proxy":"http://localhost:4000"
 }
