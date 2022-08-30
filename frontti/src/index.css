@@ -40,7 +40,7 @@ code {
     background-position: -10.5vw -25vh; ;
   }
   .herotext{
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   .herotext2{
     font-size: 1.3rem;
@@ -57,6 +57,7 @@ code {
 
 #dark{
   background-color: rgb(7, 12, 15);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 #dark .about{
@@ -98,21 +99,21 @@ code {
 
 .alert{
   animation: slideIn 1s ease-in-out;
-  animation-delay: 10ms;
+  animation-delay: 1ms;
 }
 
 
 .download-alert{
 
   animation: slideIn 1s ease-in-out;
-  animation-delay: 10ms;
+  animation-delay: 1ms;
 
 }
 
 .videos{
 
   animation: fadeIn 0.5s ease-in-out;
-  animation-delay: 10ms;
+  animation-delay: 1ms;
 
 }
 
@@ -157,4 +158,3 @@ code {
     margin-top: 13px;
   } 
 }
-

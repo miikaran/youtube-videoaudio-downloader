@@ -36,12 +36,13 @@ export default function Search(){
             const data = await response.json()  
             
             if(!response.ok){
-                alert('Error searching the data')
+                alert('Error fetching the data')
             }
 
             setvideoData(data.result.YOUTUBE_SEARCH.items)
             sethasSearched(true)
             setsearching(false)
+            console.log(data)
         }
 
         catch(err){
@@ -56,7 +57,9 @@ export default function Search(){
     ===================================*/
     const searchDataToServer = async (e) => {
 
-        e.preventDefault();
+        if(e){
+            e.preventDefault();
+        }
 
         try{
 
@@ -120,6 +123,9 @@ export default function Search(){
                 videoFormat,
             })  
         })
+        if(!response.ok){
+            alert('Error downloading')
+        }
         downloadContentFile();
     }
 
@@ -130,7 +136,6 @@ export default function Search(){
     const downloadContentFile = () => {
 
         window.location.href = url2
-
     }
 
 
@@ -146,7 +151,7 @@ export default function Search(){
 
                                     <input
                                         onChange ={event => setuserSearch(event.target.value)} 
-                                        placeholder="ENTER URL OR NAME HERE"
+                                        placeholder="Enter video URL or name here..."
                                         class="w-full p-3 py-4 text-lg font-medium text-gray-900 transition border-2 border-gray-300 rounded-sm shadow-sm focus:ring focus:outline-none focus:ring-yellow-200 focus:border-white"
                                     /> 
 
@@ -184,7 +189,7 @@ export default function Search(){
                     { hasSearched ? (
 
                      <div class="mt-20 videos">
-                        
+                                          
                         {videoData.map(info => {
                             
                             return (
@@ -203,6 +208,7 @@ export default function Search(){
                                     <a class="underline" href={'https://www.youtube.com/watch?v=' + info.id.videoId}><p class="mx-4 text-2xl font-bold py-2">{info.snippet.channelTitle}</p></a>
                                     <p class="mt-1 font-bold text-lg mx-4"><span class="font-medium text-md">{info.snippet.title}</span></p>
                                     <p class="text-xs mx-4 py-2">{info.snippet.description}</p>
+                                    <p class="text-sm mx-4">Published: <b>{info.snippet.publishTime.slice(0, 10)}</b></p>
                                     <p class="mx-4 mt-4 font-bold">Choose preferred quality!</p>
 
                                     

@@ -7,3 +7,4 @@ node_modules/
 .env.local
 
 key2.json
+key.json

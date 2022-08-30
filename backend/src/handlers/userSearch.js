@@ -1,8 +1,9 @@
 const firebase = require('../setup/firebase')
-const fetch = require("node-fetch");
+const fetch = require("node-fetch")
 const ytdl = require('ytdl-core')
+const youtubeAPI = require('./key.json')
 
-const youtubeAPIKey = ""
+const youtubeAPIKey = youtubeAPI.youtubeApiKey
 
 let videoURL;
 let name;
