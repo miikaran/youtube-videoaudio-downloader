@@ -21,7 +21,7 @@
 <br>
 <br>
 
-## What's Forbidden.MP4?
+## What's forbidden.MP4?
 
 > Forbidden.MP4 is an online tool which you can use to download  videos,  audios & shorts  straight from youtube. <br>
   It uses npm package called YTDL-core to download the content.
