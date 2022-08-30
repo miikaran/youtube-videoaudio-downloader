@@ -45,7 +45,6 @@ export default function Search(){
             setvideoData(data.result.YOUTUBE_SEARCH.items)
             sethasSearched(true)
             setsearching(false)
-            console.log(data)
         }
 
         catch(err){
