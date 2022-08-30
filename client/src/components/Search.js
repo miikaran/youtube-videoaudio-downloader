@@ -15,11 +15,12 @@ export default function Search(){
     const [searching, setsearching]= useState(false);
     const [downloading, setdownloading] = useState(false);
     
-    const port = 4000
-    const url = `/VIDEOS/` // SERVERSIDE API ENDPOINT FOR VIDEOS //
-    const url2 = `/download` //SERVERSIDE API ENDPOINT FOR UPLOADS & DOWNLOADS //
-    //const url = `http://localhost:4000/VIDEOS/`
-    //const url2 = `http://localhost:4000/download`
+    const searchURL = "/VIDEOS/"//ENDPOINT FOR SEARCH DATA & VIDEOS //
+    const downloadURL = "/download"//ENDPOINT FOR UPLOADS & DOWNLOADS // 
+           
+    //const searchURL = `http://localhost:4000/VIDEOS/`
+    //const downloadURL = `http://localhost:4000/download`
+
     let resultAmount = 5; 
     let videoID = '';
     let videoURL = '';
@@ -34,7 +35,7 @@ export default function Search(){
         try{
 
             setsearching(true);
-            const response = await fetch(url)
+            const response = await fetch(searchURL)
             const data = await response.json()  
             
             if(!response.ok){
@@ -65,7 +66,7 @@ export default function Search(){
 
         try{
 
-            const response = await fetch(`${url}`, {
+            const response = await fetch(`${searchURL}`, {
 
                 method: 'POST',
                 headers: {
@@ -113,7 +114,7 @@ export default function Search(){
         videoURL = (`https://www.youtube.com/watch?v=${videoID}`)
 
         setdownloading(true);
-        const response = await fetch(`${url2}`, {
+        const response = await fetch(`${downloadURL}`, {
 
             method: 'POST',
             headers: {
@@ -137,7 +138,7 @@ export default function Search(){
     ===================================*/
     const downloadContentFile = () => {
 
-        window.location.href = url2
+        window.location.href = downloadURL
     }
 
 
