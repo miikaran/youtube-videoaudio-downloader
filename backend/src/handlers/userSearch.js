@@ -1,9 +1,9 @@
+require('dotenv').config();
 const firebase = require('../setup/firebase')
 const fetch = require("node-fetch")
 const ytdl = require('ytdl-core')
-const youtubeAPI = require('./key.json')
 
-const youtubeAPIKey = youtubeAPI.youtubeApiKey
+const youtubeAPIKey = process.env.YOUTUBE_API_KEY
 
 let videoURL;
 let name;
