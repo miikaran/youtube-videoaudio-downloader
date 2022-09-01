@@ -1,7 +1,7 @@
 <br>
 <div align="center">
   <a href="https://forbidden-mp4-downloader.herokuapp.com/">
-    <img src="https://user-images.githubusercontent.com/88707539/187523458-79505dfd-e85c-437c-9e2f-d4e4a9bdd97f.png" alt="Logo">
+    <img src="https://user-images.githubusercontent.com/88707539/187948740-33fb44a0-9073-45d8-b215-bc26ef5e630a.png" alt="Logo">
   </a>
 </div>
 
