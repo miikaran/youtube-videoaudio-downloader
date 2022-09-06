@@ -33,8 +33,8 @@ export default function LandingPage(){
                             <b>Select details, Enter video URL or name below & press search</b>
                         </div>
                         <InfoAlert />
-                        <Search />     
-                    </div>
+                        <Search />                       
+                    </div>          
                 </div>
           
                 <div class="text-white flex items-center justify-center ml-7 info" id="About">
@@ -80,33 +80,6 @@ export default function LandingPage(){
 
                                 <p class="px-4 mt-4 leading-relaxed text-gray-700 about">
                                 No. When you download content from here, it does not include any kinds of malware & includes only the file you wanted😀
-                                </p>
-                            </details>
-
-                            <details class="group">
-                                <summary
-                                class="flex items-center justify-center p-5 cursor-pointer border-2 border-amber-400"
-                                >
-                                <h5 class="font-medium text-gray-700 about">
-                                How can i use it after the download feature is removed?
-                                </h5>
-
-                                <svg
-                                    class="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                    strokeWidth="2"
-                                    d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                                </summary>
-
-                                <p class="px-4 mt-4 leading-relaxed text-gray-700 about">
-                                This entire project is public at my <a class="font-bold underline" href="https://github.com/miikaran/youtube-videoaudio-downloader"> Github </a>, so you can just get the code from there & enable it by yourself!😀
                                 </p>
                             </details>
 
