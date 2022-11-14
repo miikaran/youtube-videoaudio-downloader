@@ -1,8 +1,6 @@
 <br>
 <div align="center">
-  <a href="https://forbidden-mp4-downloader.herokuapp.com/">
     <img src="https://user-images.githubusercontent.com/88707539/187948740-33fb44a0-9073-45d8-b215-bc26ef5e630a.png" alt="Logo">
-  </a>
 </div>
 
 <br>
@@ -17,14 +15,6 @@
   <img src="https://img.shields.io/badge/Heroku-430098.svg?style=for-the-badge&logo=Heroku&logoColor=white">
   
 </div>
-
-
-<div align=center>
-
-  # <a href="https://forbidden-mp4-downloader.herokuapp.com/">Live at Heroku</a>
-  
-</div>
-
 
 ## What's forbidden.MP4?
 
